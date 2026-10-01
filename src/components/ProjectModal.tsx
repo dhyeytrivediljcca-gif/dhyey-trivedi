@@ -91,17 +91,17 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
           transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#0A0D15] border border-white/15 rounded-3xl shadow-2xl shadow-black z-10 p-6 sm:p-8 md:p-10 text-white"
+          className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-[#0A0D15] border border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl shadow-black z-10 p-4 sm:p-8 md:p-10 text-white"
         >
           {/* Top Bar */}
-          <div className="flex items-center justify-between pb-6 border-b border-white/10">
-            <div className="flex items-center gap-3">
-              <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-xs font-semibold">
+          <div className="flex items-center justify-between pb-4 sm:pb-6 border-b border-white/10 gap-2">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+              <span className="px-2.5 sm:px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-mono text-[10px] sm:text-xs font-semibold">
                 {project.category}
               </span>
-              <span className="font-mono text-xs text-zinc-500">{project.year}</span>
+              <span className="font-mono text-[11px] sm:text-xs text-zinc-500">{project.year}</span>
               {project.badge && (
-                <span className="px-2.5 py-0.5 rounded-full bg-teal-500/10 text-teal-300 font-mono text-[10px] border border-teal-500/20">
+                <span className="px-2.5 py-0.5 rounded-full bg-teal-500/10 text-teal-300 font-mono text-[10px] border border-teal-500/20 hidden sm:inline">
                   {project.badge}
                 </span>
               )}
@@ -112,18 +112,19 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 sounds.playClick();
                 onClose();
               }}
-              className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-zinc-400 hover:text-white transition-colors"
+              aria-label="Close modal"
+              className="p-2 rounded-full bg-white/5 hover:bg-white/15 text-zinc-400 hover:text-white transition-colors cursor-pointer shrink-0"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
           {/* Title and Tagline */}
-          <div className="py-6 space-y-2">
-            <h2 className="font-space font-bold text-3xl sm:text-4xl text-white">
+          <div className="py-4 sm:py-6 space-y-2">
+            <h2 className="font-space font-bold text-2xl sm:text-3xl md:text-4xl text-white">
               {project.title}
             </h2>
-            <p className="text-emerald-400 font-mono text-sm sm:text-base">
+            <p className="text-emerald-400 font-mono text-xs sm:text-base">
               {project.tagline}
             </p>
           </div>

@@ -60,26 +60,26 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white dark:bg-[#090D16] border border-zinc-200 dark:border-white/15 rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 text-zinc-900 dark:text-white z-10 space-y-8"
+          className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto bg-white dark:bg-[#090D16] border border-zinc-200 dark:border-white/15 rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-8 md:p-10 text-zinc-900 dark:text-white z-10 space-y-6 sm:space-y-8"
         >
           {/* Header */}
-          <div className="flex items-center justify-between pb-6 border-b border-zinc-200 dark:border-white/10">
-            <div className="flex items-center gap-3">
-              <ShieldCheck className="w-6 h-6 text-emerald-500 dark:text-emerald-400" />
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 sm:pb-6 border-b border-zinc-200 dark:border-white/10 gap-4">
+            <div className="flex items-start gap-3">
+              <ShieldCheck className="w-6 h-6 text-emerald-500 dark:text-emerald-400 shrink-0 mt-0.5" />
               <div>
-                <h3 className="font-space font-bold text-xl sm:text-2xl text-zinc-900 dark:text-white">
+                <h3 className="font-space font-bold text-lg sm:text-2xl text-zinc-900 dark:text-white">
                   Dhyey Trivedi — Official Resume Dossier
                 </h3>
-                <p className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                <p className="font-mono text-[11px] sm:text-xs text-zinc-500 dark:text-zinc-400">
                   Verified Academic &amp; Professional Record • 2026
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 self-end sm:self-auto">
               <button
                 onClick={handleDownload}
-                className="flex items-center gap-2 bg-emerald-400 hover:bg-emerald-300 text-black font-mono font-bold text-xs px-4 py-2.5 rounded-xl transition-all shadow-md shadow-emerald-500/20"
+                className="flex items-center gap-2 bg-emerald-400 hover:bg-emerald-300 text-black font-mono font-bold text-xs px-3.5 sm:px-4 py-2.5 rounded-xl transition-all shadow-md shadow-emerald-500/20 cursor-pointer"
               >
                 <Download className="w-4 h-4" />
                 <span>DOWNLOAD PDF</span>
@@ -90,7 +90,8 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => 
                   sounds.playClick();
                   onClose();
                 }}
-                className="p-2 rounded-xl bg-zinc-100 dark:bg-white/5 hover:bg-zinc-200 dark:hover:bg-white/15 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                aria-label="Close modal"
+                className="p-2.5 rounded-xl bg-zinc-100 dark:bg-white/5 hover:bg-zinc-200 dark:hover:bg-white/15 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
