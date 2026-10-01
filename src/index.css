@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-syne: 'Syne', sans-serif;
+    --font-space: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --accent-emerald: #00F59B;
+    --accent-glow: rgba(0, 245, 155, 0.35);
+  }
+
+  * {
+    box-sizing: border-box;
+    cursor: default;
+  }
+
+  a, button, input, textarea, select, [role="button"] {
+    cursor: pointer;
+  }
+
+  html.dark, :root.dark {
+    color-scheme: dark;
+    --bg-primary: #07080B;
+    --bg-secondary: #0A0D15;
+    --bg-card: #0E121B;
+    --text-primary: #F1F5F9;
+    --text-secondary: #94A3B8;
+    --border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  html.light, :root.light {
+    color-scheme: light;
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --border-color: rgba(0, 0, 0, 0.12);
+  }
+
+  body {
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .dark body {
+    background-color: #07080B;
+    color: #F1F5F9;
+  }
+
+  .light body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+  }
+
+  /* Custom smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: #08090C;
+  }
+  .light ::-webkit-scrollbar-track {
+    background: #E2E8F0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1F2430;
+    border-radius: 3px;
+  }
+  .light ::-webkit-scrollbar-thumb {
+    background: #94A3B8;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #00F59B;
+  }
+}
+
+/* Custom font utilities */
+.font-syne {
+  font-family: var(--font-syne);
+}
+.font-space {
+  font-family: var(--font-space);
+}
+.font-mono {
+  font-family: var(--font-mono);
+}
+.font-sans {
+  font-family: var(--font-body);
+}
+
+/* Background Grids & Technical Patterns */
+.dark .bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+.light .bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+.dark .bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+}
+.light .bg-dot-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+}
+
+.dark .bg-circuit-grid {
+  background-size: 80px 80px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 245, 155, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 245, 155, 0.04) 1px, transparent 1px);
+}
+.light .bg-circuit-grid {
+  background-size: 80px 80px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+}
+
+/* Scanning line overlay */
+.scanline {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.3)
+  );
+  background-size: 100% 4px;
+}
+
+/* Typography clipping & stroke */
+.dark .text-outline-thin {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.2);
+  color: transparent;
+}
+.light .text-outline-thin {
+  -webkit-text-stroke: 1.5px rgba(15, 23, 42, 0.2);
+  color: transparent;
+}
+
+.dark .text-outline-strong {
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.6);
+  color: transparent;
+}
+.light .text-outline-strong {
+  -webkit-text-stroke: 1.5px rgba(15, 23, 42, 0.6);
+  color: transparent;
+}
+
+/* Animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.04); }
+}
+
+@keyframes radarSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.animate-float-slow {
+  animation: floatSlow 8s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-radar {
+  animation: radarSweep 4s linear infinite;
+}
+
+/* Basketball Court Arc & Lines */
+.court-three-point-arc {
+  border-radius: 50% / 100% 100% 0 0;
+}
+
+/* Custom interactive button shimmer */
+.shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.2) 25%,
+    transparent 30%
+  );
+  transform: rotate(30deg) translateX(-100%);
+  transition: transform 0.8s ease;
+}
+.shimmer-btn:hover::after {
+  transform: rotate(30deg) translateX(100%);
+}
