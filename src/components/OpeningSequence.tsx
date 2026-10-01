@@ -27,7 +27,7 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
           clearInterval(progressInterval);
           return 100;
         }
-        return prev + 3.2;
+        return prev + 0.85;
       });
     }, 25);
 
@@ -39,11 +39,11 @@ export const OpeningSequence: React.FC<OpeningSequenceProps> = ({ onComplete }) 
         }
         return prev;
       });
-    }, 280);
+    }, 750);
 
     const finishTimeout = setTimeout(() => {
       onComplete();
-    }, 1200);
+    }, 3200);
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'Space' || e.code === 'Enter' || e.code === 'Escape') {

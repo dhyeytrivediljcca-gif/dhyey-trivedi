@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, useMotionTemplate, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { 
   MapPin, 
   ArrowUpRight, 
@@ -78,64 +78,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProject, onOpenResumeModal }) 
     };
   }, []);
 
-  // Precise Scroll Progress for Reversible Cinematic Light Sweep Outro
+  // Scroll Progress for Gentle Parallax
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"]
   });
-
-  // CINEMATIC LIGHT SWEEP & PROGRESSIVE DISSOLVE:
-  // 0.00 → 0.12 (Top of Page / Normal View): Portrait is 100% sharp & visible, beam is hidden off-left
-  // 0.12 → 0.40 (Scrolling towards bottom divider): Light beam sweeps across portrait from Left (-15%) to Right (118%)
-  // Progressive clip-path dissolves the character left-to-right in lockstep with the light beam
-  // Fully reversible: scrolling back up sweeps light Right → Left and reassembles character
-  const lightBeamX = useTransform(
-    scrollYProgress,
-    [0, 0.12, 0.40],
-    ['-15%', '-15%', '118%']
-  );
-
-  const lightBeamOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.12, 0.16, 0.36, 0.42],
-    [0, 0, 1, 1, 0]
-  );
-
-  // Progressive Clip-Path Wipe (0% clipped at start -> 105% clipped when beam exits)
-  const clipLeft = useTransform(
-    scrollYProgress,
-    [0, 0.12, 0.40],
-    [0, 0, 105]
-  );
-  const portraitClip = useMotionTemplate`inset(0% 0% 0% ${clipLeft}%)`;
-
-  // Signature Badge Opacity (fades as light beam crosses)
-  const badgeOpacity = useTransform(scrollYProgress, [0, 0.15, 0.32], [1, 1, 0]);
-
-  // Subtle Illumination & Micro-Depth during scan
-  const portraitFilter = useTransform(
-    scrollYProgress,
-    [0, 0.12, 0.24, 0.38, 0.45],
-    [
-      'brightness(1) contrast(1.05)',
-      'brightness(1) contrast(1.05)',
-      'brightness(1.15) contrast(1.12)',
-      'brightness(1.04) contrast(1.05)',
-      'brightness(1) contrast(1.05)'
-    ]
-  );
-
-  const portraitScale = useTransform(
-    scrollYProgress,
-    [0, 0.12, 0.40],
-    [1, 1, 1.02]
-  );
-
-  const portraitScrollY = useTransform(
-    scrollYProgress,
-    [0, 0.12, 0.40],
-    [0, 0, -8]
-  );
 
   // Parallax for Background Typography & Aura
   const yBg = useTransform(scrollYProgress, [0, 1], [0, 80]);
@@ -351,12 +298,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProject, onOpenResumeModal }) 
               )}
             </AnimatePresence>
 
-            {/* STEP 3 & 4: Transparent Cutout Portrait with Cinematic Light Sweep & Progressive Dissolve */}
+            {/* STEP 3 & 4: Transparent Cutout Portrait with Smooth Intro Reveal */}
             <motion.div 
               style={{
-                scale: portraitScale,
-                y: portraitScrollY,
                 x: mouseXPortrait,
+                y: mouseYPortrait,
               }}
               initial={{ opacity: 0, y: 40, scale: 0.94 }}
               animate={{ 
@@ -370,46 +316,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProject, onOpenResumeModal }) 
               {/* Backing Ambient Aura */}
               <div className="absolute bottom-6 w-3/4 h-3/4 bg-gradient-to-t from-emerald-500/30 via-teal-500/15 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
 
-              {/* Pure Transparent Cutout Image with Progressive Dissolve Clip-Path & Illumination */}
+              {/* Pure Transparent Cutout Image */}
               <motion.img
                 src="/dhyey.png"
                 alt="Dhyey Trivedi - Frontend & Software Developer"
-                style={{
-                  clipPath: portraitClip,
-                  filter: portraitFilter,
-                }}
                 className="w-full h-auto max-h-[105%] object-contain object-bottom drop-shadow-[0_20px_35px_rgba(0,0,0,0.5)] contrast-105"
               />
 
-              {/* CINEMATIC LIGHT SWEEP BEAM (Travels Left → Right across portrait as user scrolls) */}
-              <motion.div
-                style={{
-                  left: lightBeamX,
-                  opacity: lightBeamOpacity,
-                }}
-                className="absolute inset-y-0 w-24 sm:w-32 -translate-x-1/2 pointer-events-none z-30 overflow-visible"
-              >
-                {/* Wide ambient radiant energy flare */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-400/40 dark:via-emerald-400/60 via-teal-300/30 to-transparent blur-xl" />
-                
-                {/* Mid glow core */}
-                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-12 bg-gradient-to-r from-transparent via-emerald-300/60 dark:via-teal-300/70 to-transparent blur-md" />
-                
-                {/* Razor-sharp high-intensity energy line */}
-                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-[3px] sm:w-[4px] bg-gradient-to-b from-transparent via-white to-transparent shadow-[0_0_15px_#34d399,0_0_30px_#2dd4bf,0_0_50px_#ffffff]" />
-                
-                {/* Top and center lens flare gleams */}
-                <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-6 h-16 bg-white/70 rounded-full blur-[3px]" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 w-8 h-20 bg-emerald-200/60 rounded-full blur-[4px]" />
-                <div className="absolute top-3/4 left-1/2 -translate-x-1/2 w-5 h-12 bg-teal-200/50 rounded-full blur-[3px]" />
-              </motion.div>
-
-              {/* Minimal floating signature label (fades out as light sweep crosses) */}
+              {/* Minimal floating signature label */}
               {introStage === 'settled' && (
                 <motion.div
-                  style={{
-                    opacity: badgeOpacity,
-                  }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5 }}
