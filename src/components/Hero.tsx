@@ -189,7 +189,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProject, onOpenResumeModal }) 
           className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-10 overflow-visible"
         >
           <div className="w-full text-center">
-            <h1 className="font-syne font-black text-[18vw] md:text-[16vw] lg:text-[14vw] tracking-tighter text-zinc-900/40 dark:text-white/30 leading-[0.85] uppercase transition-colors select-none">
+            <h1 
+              style={{ fontFamily: "'Syne', sans-serif" }}
+              className="font-syne font-black text-[18vw] md:text-[16vw] lg:text-[14vw] tracking-tighter text-zinc-900/40 dark:text-white/30 leading-[0.85] uppercase transition-colors select-none"
+            >
               {firstRow}
               {introStage === 'typing' && parts.length <= 1 && (
                 <span className="inline-block w-2 md:w-3.5 h-12 md:h-20 bg-emerald-400 animate-pulse ml-1 align-middle" />
@@ -197,7 +200,10 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProject, onOpenResumeModal }) 
             </h1>
           </div>
           <div className="w-full text-center">
-            <h1 className="font-syne font-black text-[18vw] md:text-[16vw] lg:text-[14vw] tracking-tighter text-zinc-900/30 dark:text-white/20 leading-[0.85] uppercase select-none">
+            <h1 
+              style={{ fontFamily: "'Syne', sans-serif" }}
+              className="font-syne font-black text-[18vw] md:text-[16vw] lg:text-[14vw] tracking-tighter text-zinc-900/30 dark:text-white/20 leading-[0.85] uppercase select-none"
+            >
               {secondRow}
               {introStage === 'typing' && parts.length > 1 && (
                 <span className="inline-block w-2 md:w-3.5 h-12 md:h-20 bg-emerald-400 animate-pulse ml-1 align-middle" />
