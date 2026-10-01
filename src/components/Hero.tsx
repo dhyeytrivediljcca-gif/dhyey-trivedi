@@ -190,8 +190,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProject, onOpenResumeModal }) 
         >
           <div className="w-full text-center">
             <h1 
-              style={{ fontFamily: "'Syne', sans-serif" }}
-              className="font-syne font-black text-[18vw] md:text-[16vw] lg:text-[14vw] tracking-tighter text-zinc-900/40 dark:text-white/30 leading-[0.85] uppercase transition-colors select-none"
+              style={{ fontFamily: "'Space Grotesk', 'Plus Jakarta Sans', sans-serif" }}
+              className="font-space font-black text-[18vw] md:text-[16vw] lg:text-[14vw] tracking-tighter text-zinc-900/40 dark:text-white/30 leading-[0.85] uppercase transition-colors select-none"
             >
               {firstRow}
               {introStage === 'typing' && parts.length <= 1 && (
@@ -201,8 +201,8 @@ export const Hero: React.FC<HeroProps> = ({ onOpenProject, onOpenResumeModal }) 
           </div>
           <div className="w-full text-center">
             <h1 
-              style={{ fontFamily: "'Syne', sans-serif" }}
-              className="font-syne font-black text-[18vw] md:text-[16vw] lg:text-[14vw] tracking-tighter text-zinc-900/30 dark:text-white/20 leading-[0.85] uppercase select-none"
+              style={{ fontFamily: "'Space Grotesk', 'Plus Jakarta Sans', sans-serif" }}
+              className="font-space font-black text-[18vw] md:text-[16vw] lg:text-[14vw] tracking-tighter text-zinc-900/30 dark:text-white/20 leading-[0.85] uppercase select-none"
             >
               {secondRow}
               {introStage === 'typing' && parts.length > 1 && (
